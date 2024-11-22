@@ -1,0 +1,89 @@
+	1.	Program to check no. is prime or not
+declare
+n number; m number; flag number;
+Begin
+n:=:n; m:=n/2; flag:=0; for i in 2..n loop if n mod i=0 then flag:=flag+1;
+end if;
+end loop; if flag >2 then
+dbms_output.put_line(n||' is not prime number ');
+else dbms_output.put_line(n||' is prime number ');
+end if;
+end
+
+
+	2.	Swapping two variable with and without third variable
+declare
+a number; b number; c number;
+Begin
+a:=:a; b:=:b; c:=a; a:=b; b:=c; dbms_output.put_line('Value of a ' || a); dbms_output.put_line('Value of b ' || b); End
+declare
+a number; b number;
+Begin
+a:=:a; b:=:b; a:=a+b; b:=a-b; a:=a-b; dbms_output.put_line('Value of a ' || a); dbms_output.put_line('Value of b ' || b);
+End
+
+
+	3.	Addition of two no. with getting value from user
+declare
+a number; b number; c number;
+Begin
+a:=:a; b:=:b; c:=a+b;
+dbms_output.put_line('Addition of a and b : ' || c); End
+
+
+	4.	Fibonacci Series :
+declare
+t1 number; t2 number; t3 number;
+Begin t1 := 0; t2 := 1; dbms_output.put_line('Fibonacci Series : '); dbms_output.put_line(t1); dbms_output.put_line(t2); for i in 3..5 loop
+t3 := t1+t2; dbms_output.put_line(t3); t1 := t2; t2 := t3;
+end loop;
+end;
+
+
+5.	Printing even no. form 0:
+declare i number;
+begin
+for i in 0..20 loop
+if i mod 2=0 then
+dbms_output.put_line(i);
+end if;
+end loop;
+end
+
+
+6.	Printing 1 to 10 :
+begin
+for i in 1..10 loop
+dbms_output.put_line(i);
+end loop;
+end
+
+7.	Checking large no. from three no.
+declare
+a number; b number; c number;
+Begin
+a:=:a; b:=:b; c:=:c;
+if a>b and a>c
+then
+dbms_output.put_line('First number is large ');
+elsif b>a and b>c
+then dbms_output.put_line('Second number is large ');
+else dbms_output.put_line('Third number is large ');
+end if; end;
+
+
+	8.	Program for calculating percentage of 5 subjects :
+declare
+m1 number; m2 number; m3 number; m4 number; m5 number;
+total number; percentage number;
+Begin m1:=:m1; m2:=:m2; m3:=:m3; m4:=:m4; m5:=:m5; total := m1+m2+m3+m4+m5;
+percentage:=total/5; if percentage>80 then
+dbms_output.put_line('Result : Distinction');
+elsif m1<35 or m2<35 or m3<35 or m4<35 or m5<35 or percentage<35 then dbms_output.put_line('Result : Fail');
+elsif percentage<80 and percentage>70 then dbms_output.put_line('Result : First Class');
+elsif percentage>50 and percentage>60 then
+dbms_output.put_line('Result : Second Class');
+elsif percentage<40 then
+dbms_output.put_line('Result : Pass');
+else dbms_output.put_line('Result : Fail');
+end if; end;
