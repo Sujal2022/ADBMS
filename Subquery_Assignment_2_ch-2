@@ -1,0 +1,52 @@
+1.	Employee 
+CREATE TABLE Employees ( EmployeeID NUMBER PRIMARY KEY, FirstName VARCHAR2(50), 
+LastName VARCHAR2(50), DepartmentID NUMBER, Salary NUMBER ); 
+2.	Departments 
+CREATE TABLE Departments ( DepartmentID NUMBER PRIMARY KEY, DepartmentName 
+VARCHAR2(50) ); 
+3.	Projects 
+CREATE TABLE Projects ( ProjectID NUMBER PRIMARY KEY, ProjectName VARCHAR2(50), DepartmentID NUMBER ); 	 
+4.	Employee Projects 
+CREATE TABLE EmployeeProjects ( EmployeeID NUMBER, ProjectID NUMBER, PRIMARY KEY (EmployeeID, ProjectID) ); 
+ 
+Sample Data 
+-- ----Departments ------- 
+INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (1, 'HR');  
+INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (2, 'IT'); 
+ INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (3, 'Finance');  --------- Employees-------- 
+ INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES 
+(1, 'John', 'Doe', 1, 50000); 
+ INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES 
+(2, 'Jane', 'Smith', 2, 60000);  
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES (3, 'Sam', 'Brown', 3, 55000); 
+ INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES 
+(4, 'Lucy', 'Green', 2, 62000);  
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES (5, 'Mike', 'Johnson', 1, 52000); 
+ -- -----Projects--------- 
+ INSERT INTO Projects (ProjectID, ProjectName, DepartmentID) VALUES (1, 'Project A', 1); INSERT INTO Projects (ProjectID, ProjectName, DepartmentID) VALUES (2, 'Project B', 2); 
+ INSERT INTO Projects (ProjectID, ProjectName, DepartmentID) VALUES (3, 'Project C', 3); 
+ -- -----EmployeeProjects -------- 
+INSERT INTO EmployeeProjects (EmployeeID, ProjectID) VALUES (1, 1);  
+INSERT INTO EmployeeProjects (EmployeeID, ProjectID) VALUES (2, 2); 
+ INSERT INTO EmployeeProjects (EmployeeID, ProjectID) VALUES (3, 3); 
+ INSERT INTO EmployeeProjects (EmployeeID, ProjectID) VALUES (4, 2); 
+ INSERT INTO EmployeeProjects (EmployeeID, ProjectID) VALUES (5, 1); 
+Practice Queries 
+1.	Find all employees who work in the 'IT' department. 
+2.	List the names of employees who are working on 'Project A'. 
+3.	Find the departments that have no employees. 4. Find employees whose salary is above the average salary of their department. 
+5.	List all projects along with the department name they belong to. 
+6.	Find employees who are not assigned to any project. 
+7.	List the names of employees who are working on more than one project. 
+8.	Find the department with the highest average salary. 
+Solution 
+1.	SELECT * FROM Employees WHERE DepartmentID = (SELECT DepartmentID FROM Departments WHERE DepartmentName = 'IT'); 
+2.	SELECT FirstName, LastName FROM Employees WHERE EmployeeID IN (SELECT EmployeeID FROM EmployeeProjects WHERE ProjectID = (SELECT ProjectID FROM Projects WHERE ProjectName = 'Project A')); 
+3.	SELECT DepartmentName FROM Departments WHERE DepartmentID NOT IN (SELECT DISTINCT DepartmentID FROM Employees); 
+4.	SELECT FirstName, LastName, Salary FROM Employees e WHERE Salary > (SELECT AVG(Salary) FROM Employees WHERE DepartmentID = e.DepartmentID); 
+5.	SELECT ProjectName, (SELECT DepartmentName FROM Departments WHERE DepartmentID = p.DepartmentID) AS DepartmentName FROM Projects p; 
+6.	SELECT FirstName, LastName FROM Employees WHERE EmployeeID NOT IN (SELECT DISTINCT EmployeeID FROM EmployeeProjects); 
+7.	SELECT FirstName, LastName FROM Employees WHERE EmployeeID IN (SELECT 
+EmployeeID FROM EmployeeProjects GROUP BY EmployeeID HAVING COUNT(ProjectID) > 1); 
+8.	SELECT DepartmentName FROM Departments WHERE DepartmentID = (SELECT DepartmentID FROM (SELECT DepartmentID, AVG(Salary) AS AvgSalary FROM Employees GROUP BY DepartmentID ORDER BY AvgSalary DESC) WHERE ROWNUM = 
+1); 
