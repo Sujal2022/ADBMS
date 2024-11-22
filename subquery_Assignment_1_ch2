@@ -1,0 +1,80 @@
+1.	Employees 
+CREATE TABLE Employees ( 
+    EmployeeID NUMBER PRIMARY KEY, 
+    FirstName VARCHAR2(50), 
+    LastName VARCHAR2(50), 
+    DepartmentID NUMBER, 
+    Salary NUMBER 
+); 
+2.	Departments 
+CREATE TABLE Departments ( 
+    DepartmentID NUMBER PRIMARY KEY, 
+    DepartmentName VARCHAR2(50) 
+); Sample Data 
+-- Departments---- 
+ 
+INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (1, 'HR'); 
+INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (2, 'IT'); 
+INSERT INTO Departments (DepartmentID, DepartmentName) VALUES (3, 
+'Finance'); 
+ 
+-- Employees--- 
+ 
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES (1, 'John', 'Doe', 1, 50000); 
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, Salary) VALUES (2, 'Jane', 'Smith', 2, 60000); 
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, 
+Salary) VALUES (3, 'Sam', 'Brown', 3, 55000); 
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, 
+Salary) VALUES (4, 'Lucy', 'Green', 2, 62000); 
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentID, 
+Salary) VALUES (5, 'Mike', 'Johnson', 1, 52000); Practice Queries and Solutions 
+1.	Find the name of the department where 'Jane Smith' works. 
+SELECT DepartmentName 
+FROM Departments 
+WHERE DepartmentID = (SELECT DepartmentID  
+                      FROM Employees  
+                      WHERE FirstName = 'Jane'  
+                      AND LastName = 'Smith'); 
+2.	List all employees who work in the 'Finance' department. 
+SELECT FirstName, LastName  
+FROM Employees 
+WHERE DepartmentID = (SELECT DepartmentID  
+                      FROM Departments  
+                      WHERE DepartmentName = 'Finance'); 
+3.	Find the highest salary in the 'IT' department. 
+SELECT MAX(Salary) 
+FROM Employees 
+WHERE DepartmentID = (SELECT DepartmentID  
+                      FROM Departments  
+                      WHERE DepartmentName = 'IT'); 
+4.	List the names of employees who earn more than 'John Doe'. 
+SELECT FirstName, LastName  
+FROM Employees  
+WHERE Salary > (SELECT Salary  
+                FROM Employees  
+                WHERE FirstName = 'John'                  AND LastName = 'Doe'); 
+5.	Find the average salary of employees in the 'HR' department. 
+SELECT AVG(Salary) 
+FROM Employees 
+WHERE DepartmentID = (SELECT DepartmentID  
+                      FROM Departments  
+                      WHERE DepartmentName = 'HR'); 
+6.	List the departments that have at least one employee with a salary greater than 55,000. 
+SELECT DepartmentName  
+FROM Departments  
+WHERE DepartmentID IN (SELECT DISTINCT DepartmentID  
+                       FROM Employees  
+                       WHERE Salary > 55000); 
+7.	Find the names of employees who work in the same department as 'Lucy Green'. 
+SELECT FirstName, LastName  
+FROM Employees  
+WHERE DepartmentID = (SELECT DepartmentID  
+                      FROM Employees  
+                      WHERE FirstName = 'Lucy'  
+                      AND LastName = 'Green'); 
+8.	List the departments with no employees. 
+SELECT DepartmentName  
+FROM Departments  
+WHERE DepartmentID NOT IN (SELECT DISTINCT DepartmentID  
+                           FROM Employees); 
+ 
