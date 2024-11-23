@@ -1,0 +1,64 @@
+-------------if else statement----------
+declare 
+    num NUMBER := 3000;
+    comm NUMBER := 0;
+begin
+    if num > 2000 then
+        comm := num * 0.1; 
+        dbms_output.put_line(comm);
+    elsif num <= 2000 and num > 1000 then
+        comm := num * 0.05;
+        dbms_output.put_line(comm); 
+    elsif num <= 1000 and num > 5000 then
+        comm := num * 0.03;
+        dbms_output.put_line(comm);
+    else
+        comm := num * 0.02; 
+        dbms_output.put_line(comm);    
+    end if;
+end;
+------------------
+
+--------------Switch Case----------------
+declare
+    grade char := 'C';
+begin
+    case grade
+        when 'A' then dbms_output.put_line('Excellent');
+        when 'B' then dbms_output.put_line('Very good');
+        when 'C' then dbms_output.put_line('Good');
+        when 'D' then dbms_output.put_line('Average');
+        when 'F' then dbms_output.put_line('Passed with Grace');
+        else dbms_output.put_line('Failed');
+    end case;
+end;
+
+declare
+    i number := 1;
+begin
+    loop
+    exit when i>10;
+        DBMS_OUTPUT.PUT_LINE(i);
+        i := i+1;
+    end loop;
+end;
+
+--------------While Loop----------
+declare
+    i number := 1;
+begin
+    while i<=10 loop
+    dbms_output.put_line(-i);
+    i := i+1 ;
+end loop;
+end;
+
+-----------------for loop------
+
+declare
+    k number;
+begin
+for k in 1..10 loop
+dbms_output.put_line(k);
+end loop;
+end;
