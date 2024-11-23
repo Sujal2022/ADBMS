@@ -62,3 +62,127 @@ for k in 1..10 loop
 dbms_output.put_line(k);
 end loop;
 end;
+
+
+---Max Number----
+declare
+    no1 int:=5000;
+    no2 int:=7000;
+begin
+    if no1>no2 then
+        dbms_output.put_line(no1||' is max number');
+    else
+        dbms_output.put_line(no2||' is max number');
+    end if;
+end;        
+--OR--
+declare
+    m1 number;
+    m2 number;
+begin
+    m1:=:m1;
+    m2:=:m2;
+
+    if m1>m2 then
+        dbms_output.put_line(m1||' is max number');
+    else
+        dbms_output.put_line(m2||' is max number');
+    end if;
+end; 
+
+-----------------------------
+
+--------------------------Print 1 to 10----
+DECLARE
+A NUMBER;
+
+BEGIN
+
+for a in 1..10 loop
+DBMS_OUTPUT.PUT_LINE('PRINT THE 1 TO 10  '||A);
+END LOOP;
+END;
+
+
+--------------------Print Reverse number----- 
+DECLARE
+A NUMBER;
+
+BEGIN
+
+for a in REVERSE 1..10 loop
+DBMS_OUTPUT.PUT_LINE('PRINT THE 1 TO 10  '||A);
+END LOOP;
+END;
+
+-------------------Print Even Number From 1 to 10--------
+DECLARE
+A NUMBER;
+
+BEGIN
+
+for a in 1..10 loop
+IF A MOD 2 = 0 THEN
+DBMS_OUTPUT.PUT_LINE('PRINT EVEN THE 1 TO 10  '||A);
+END IF;
+END LOOP;
+END;
+
+--------------------Print Odd Number from 1 to 10------------
+DECLARE
+A NUMBER;
+
+BEGIN
+
+for a in 1..10 loop
+IF A MOD 2 = 1 THEN
+DBMS_OUTPUT.PUT_LINE('PRINT ODD THE 1 TO 10  '||A);
+END IF;
+END LOOP;
+END;
+
+---------------------Sum of 10 to 20--------
+declare
+a number;
+temp number;
+
+begin
+temp:=0;
+
+for a in 10..20 loop
+
+dbms_output.put_line('value of a  '||a);
+temp:=temp+a;
+end loop;
+dbms_output.put_line('sum is '||temp);
+end;
+
+----------------------------------------------
+
+declare
+n number;
+i number;
+a number;
+begin
+a:=:a;
+n:=:n;
+
+
+for i in a..n loop
+dbms_output.put_line('value of i  '||i);
+end loop;
+end;
+
+DECLARE
+ADDI NUMBER;
+I NUMBER;
+
+BEGIN
+ADDI:=0;
+FOR I IN 1..10 LOOP
+DBMS_OUTPUT.PUT_LINE('VALUE OF I '||I);
+ADDI:=ADDI+I;
+
+END LOOP;
+DBMS_OUTPUT.PUT_LINE('VALUE OF I '||ADDI);
+END;
