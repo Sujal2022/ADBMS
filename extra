@@ -1,0 +1,60 @@
+declare 
+    grade char := 'A';
+begin
+    case grade
+        when 'A' then dbms_output.put_line('EXCELLEN');
+        when 'B' then dbms_output.put_line('VERY GOOD');
+        when 'C' then dbms_output.put_line('GOOD');
+        when 'D' then dbms_output.put_line('AVERAGE');
+        when 'E' then dbms_output.put_line('PASSED WITH GRACE');
+        else dbms_output.put_line('FAILED');
+    end case;
+end;
+
+
+
+
+declare
+    i number := 1;
+begin
+loop
+exit when i>10;
+    dbms_output.put_line(i);
+    i := i+1;
+    end loop;
+end;
+
+
+
+
+declare
+    k number;
+begin
+for k in 1..100 loop
+    dbms_output.put_line(k);
+    end loop;
+end;
+
+
+
+
+declare
+    i number := 1;
+begin
+while i<=10 loop
+    dbms_output.put_line(i);
+    i := i+1;
+    end loop;
+end;
+
+declare 
+    year number := 2000;
+begin
+    if MOD(year,4) = 0then
+        dbms_output.put_line('leap year');
+    else 
+        dbms_output.put_line('not leap year');
+    end if;
+end;
+
+
