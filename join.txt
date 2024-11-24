@@ -22,3 +22,7 @@ where a.id is null or b.id is null;
 ---------------cross join-------------
 SELECT * FROM paletta_a CROSS JOIN paletta_b
 
+--------------natural join---------------
+SELECT student_id, student_name, course_name 
+FROM  Students
+ NATURAL JOIN  Courses;
